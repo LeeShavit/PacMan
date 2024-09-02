@@ -72,6 +72,7 @@ function moveGhost(ghost) {
 }
 
 function eatGhost(location) {
+    playSound('eatGhost')
     var eatenGhostIdx = null
     for (var i = 0; i < gGhosts.length; i++) {
         if (location.i === gGhosts[i].location.i &&
@@ -108,4 +109,11 @@ function getGhostHTML(ghost) {
     }
     return `<span style="background-color: ${ghost.color}">${GHOST}</span>`
 
+}
+
+function colorGhosts(){
+    for (var i = 0; i < gGhosts.length; i++) {
+        const ghost = gGhosts[i]
+        renderCell(gGhosts[i].location, getGhostHTML(ghost[i]))
+    }
 }

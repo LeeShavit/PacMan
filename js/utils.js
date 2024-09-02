@@ -23,3 +23,8 @@ function getRandomColor() {
     }
     return color;
   }
+
+  function playSound(soundName) {
+    const sound = new Audio(`sound/${soundName}.mp3`)
+    sound.play()
+}

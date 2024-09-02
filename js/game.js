@@ -4,7 +4,9 @@ const WALL = '#'
 const FOOD = '.'
 const EMPTY = ' '
 const SUPERFOOD = '🍏'
-const CHERRY = '🍒'
+const CHERRY = '<img src="img/cherry.png">'
+
+
 
 const gGame = {
     score: 0,
@@ -16,8 +18,6 @@ var gCherryPos = null
 var cherryIntervalId
 
 function onInit() {
-    console.log('hello')
-
     gBoard = buildBoard()
     gTotalScore = countFood()
     createPacman(gBoard)
@@ -110,6 +110,7 @@ function updateScore(diff) {
 }
 
 function gameOver() {
+    playSound('lost')
     showModal()
     clearInterval(gIntervalGhosts)
     clearInterval(cherryIntervalId)
@@ -119,6 +120,7 @@ function gameOver() {
 
 function winGame() {
     showWinModal()
+    playSound('win')
     clearInterval(gIntervalGhosts)
     clearInterval(cherryIntervalId)
     renderCell(gPacman.location, '🥳')
@@ -126,6 +128,8 @@ function winGame() {
 }
 
 function showModal() {
+    const elMsg = document.querySelector('.winMsg')
+    elMsg.innerText = 'You Lose!'
     const elModal = document.querySelector('.modal')
     elModal.classList.remove('hide')
 }
